@@ -34,13 +34,12 @@ dependencies:
     sdk: flutter
   flutter_bloc: ^8.1.3
   flutter_dotenv: ^5.0.2
-  get: ^4.6.5
   go_router: ^7.1.1
   google_fonts: ^4.0.5
   http: ^1.0.0
   intl: ^0.18.1
-  lottie: ^2.3.2
   velocity_x: ^4.0.0
+  
 
 dev_dependencies:
   flutter_lints: ^2.0.0

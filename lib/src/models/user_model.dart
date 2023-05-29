@@ -1,4 +1,7 @@
 part of 'models.dart';
+// To parse this JSON data, do
+//
+//     final userModel = userModelFromMap(jsonString);
 
 UserModel userModelFromMap(String str) => UserModel.fromMap(json.decode(str));
 

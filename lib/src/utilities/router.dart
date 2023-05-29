@@ -1,6 +1,6 @@
 part of 'utilities.dart';
 
-final GoRouter router = GoRouter(routes: [
+final GoRouter router = GoRouter(initialLocation: '/register', routes: [
   GoRoute(
       path: '/',
       builder: (context, state) {
@@ -14,4 +14,10 @@ final GoRouter router = GoRouter(routes: [
           },
         ),
       ]),
+  GoRoute(
+    path: '/register',
+    builder: (context, state) {
+      return const RegisterScreen();
+    },
+  )
 ]);
