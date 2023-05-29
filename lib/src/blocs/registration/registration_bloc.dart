@@ -13,12 +13,14 @@ class RegistrationBloc extends Bloc<RegistrationEvent, RegistrationState> {
       //KIRIM DATA
       if (event.name.isEmpty) {
         emit(RegistrationIsFailed('Nama tidak boleh kosong'));
-      }
-      final result =
-          await UserService.regis(event.name, event.email, event.password);
+      } else {
+        final result =
+            await UserService.regis(event.name, event.email, event.password);
 
-      emit(result.fold((l) => RegistrationIsFailed('Gagal Register'),
-          (r) => RegistrationIsSuccess("Selamat bergabung, ${r.name}")));
+        emit(result.fold((l) => RegistrationIsFailed('Gagal Register'),
+            (r) => RegistrationIsSuccess("Selamat bergabung, ${r.name}")));
+      }
+
       //SUCCESS ATAU FAILED
     });
   }

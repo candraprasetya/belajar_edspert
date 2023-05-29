@@ -14,6 +14,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   @override
   Widget build(BuildContext context) {
+    print('BUILD Aku dong');
     return Scaffold(
       appBar: AppBar(
         title: Text('Registration'),
@@ -44,9 +45,29 @@ class _RegisterScreenState extends State<RegisterScreen> {
         contentPaddingLeft: 16,
       ),
       24.heightBox,
-      ElevatedButton(
-        onPressed: () {},
-        child: "Register".text.make(),
+      BlocConsumer<RegistrationBloc, RegistrationState>(
+        listener: (context, state) {
+          if (state is RegistrationIsFailed) {
+            VxToast.show(context, msg: state.message);
+          }
+          if (state is RegistrationIsSuccess) {
+            VxToast.show(context, msg: state.message);
+            context.go('/');
+          }
+        },
+        builder: (context, state) {
+          return ElevatedButton(
+            onPressed: (state is RegistrationIsLoading)
+                ? null
+                : () {
+                    BlocProvider.of<RegistrationBloc>(context).add(
+                        SendRegisterData(name.text, email.text, password.text));
+                  },
+            child: (state is RegistrationIsLoading)
+                ? CircularProgressIndicator()
+                : "Register".text.make(),
+          );
+        },
       ).wFull(context),
     ]);
   }
